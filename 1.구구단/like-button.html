@@ -1,0 +1,53 @@
+<html>
+
+<head>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <!--<script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>-->
+    <!--<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>-->
+    <script>
+        'use strict';
+
+        const e = React.createElement;
+
+        //return e('button', {onClick: () => this.setState({liked: true }) }, 'Like');
+
+        // pop, push, shift, unshift, splice -> 배열을 직접적으로 수정 (React에서 가능한 사용하지 않는다)
+        // concat, slice -> 새로운 배열을 만들어냄
+        // this.state.liked = true; (x) 3.객체를 함부로 바꾸지 마라, 복사해라(불변성) 
+
+        function LikeButton() { // 함수형 컴포넌트 X 함수 컴포넌트 O
+            // this 쓸 일이 없다
+            const [liked, setLiked] = React.useState(false); // 구조분해(배열) o
+            // const {liked, setLiked} = React.useState(false); //구조분해(객체) x
+            // 뭔짓을 하던, 결국 return한게 화면이다
+            if (liked) {
+                return 'You liked this';
+            }
+        }
+
+        class LikeButton extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = { liked: false };
+            }
+
+            render() {
+                if (this.state.liked) {
+                    return 'You liked this.';
+                }
+
+                return e('button', { onClick: () => this.setState({ liked: true }) }, 'Like');
+            }
+        }
+    </script>
+    <script>
+        ReactDOM.render(e(LikeButton), document.querySelector('#root'));
+    </script>
+</body>
+
+</html>
