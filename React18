@@ -1,0 +1,10 @@
+useLayoutEffect
+- useEffect는 화면이 그려지고 실행되기때문에 useEffect로 state를 변경시 버벅이는 현상발생
+LayoutEffect는 화면이 그려지기 전에 실행되기때문에 버벅임을 예방할수있다
+
+useTransition
+- 바로업데이트되야할 부분과 나중에 업데이트되야할부분을 분리할수있다
+검색결과처럼 나중에 업데이트 되도 되는부분들을 만들때 사용
+
+useDeferredValue
+- useMemo에서 많이 사용 중요도가 낮은 state들 같은 경우 후순으로 미뤄서 우선적인거 먼저 업데이트하고 후에 업데이트 되게할수있다
